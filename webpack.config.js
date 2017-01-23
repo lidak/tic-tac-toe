@@ -13,17 +13,14 @@ module.exports = {
   },
   module: {
     loaders: [{
-      loader: 'jsx',
-      test: /\.js$/,
-      exclude: [
-        path.resolve(__dirname, 'node_modules')
-      ]
-    }, {
       loader: 'babel',
       test: /\.js$/,
       exclude: [
         path.resolve(__dirname, 'node_modules')
       ]
+    }, {
+      test: /\.css$/,
+      loader: 'style!css'
     }]
   }
 }
