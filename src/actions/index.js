@@ -10,3 +10,10 @@ export const restartGame = () => {
         type: 'RESTART_GAME'
     }
 };
+
+export const playerWon = () => {
+  alert('asdf')
+  return {
+    type: 'PLAYER_WON'
+  }
+}

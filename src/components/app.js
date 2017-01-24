@@ -4,13 +4,9 @@ import PopupContainer from '../containers/popupContainer';
 
 const Game = () => (
     <div>
-        <BoardContainer/>
-        <PopupContainer/>
+        <BoardContainer />
+        <PopupContainer />
     </div>
 )
 
 export default Game;
-
-
-
-

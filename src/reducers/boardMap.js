@@ -5,7 +5,7 @@ let switchPlayer = () => {
     player = player === 'x' ? 'o' : 'x';
 }
 
-const boardMap = (state=new Array(9).fill(null), action) => {
+const boardMap = (state = new Array(9).fill(null), action) => {
     if (action.type === 'MAKE_MOVE') {
         let newState = state.slice();
 

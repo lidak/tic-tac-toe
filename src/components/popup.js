@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Cell = ({winner, onButtonClick, text}) => (
+let Popup = ({winner, onButtonClick, text}) => (
     <div className={text ? 'popup-container' : 'popup-container hidden'}>
         <div className='popup'>
             <div className="text">{text}</div>
@@ -9,4 +9,4 @@ let Cell = ({winner, onButtonClick, text}) => (
     </div>
 )
 
-export default Cell;
+export default Popup;

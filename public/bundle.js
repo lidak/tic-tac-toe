@@ -62,11 +62,11 @@
 
 	var _reactRedux = __webpack_require__(180);
 
-	var _reducers = __webpack_require__(223);
+	var _reducers = __webpack_require__(224);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	__webpack_require__(225);
+	__webpack_require__(227);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23832,6 +23832,13 @@
 	    };
 	};
 
+	var playerWon = exports.playerWon = function playerWon() {
+	    alert('asdf');
+	    return {
+	        type: 'PLAYER_WON'
+	    };
+	};
+
 /***/ },
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
@@ -23914,35 +23921,9 @@
 
 	var _popup2 = _interopRequireDefault(_popup);
 
+	var _core = __webpack_require__(223);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var areThreeValuesEqual = function areThreeValuesEqual(arr) {
-	    return arr[0] && arr[0] === arr[1] && arr[1] === arr[2];
-	};
-
-	var selectWinner = function selectWinner(boardMap) {
-	    var winner = void 0;
-	    //Check horisontal matches
-	    for (var i = 0; i <= boardMap.length; i += 3) {
-	        if (areThreeValuesEqual([boardMap[i], boardMap[i + 1], boardMap[i + 2]])) {
-	            winner = boardMap[i];
-	        }
-	    }
-
-	    //Check vertical matches
-	    for (var _i = 0; _i < 3; _i++) {
-	        if (areThreeValuesEqual([boardMap[_i], boardMap[_i + 3], boardMap[_i + 6]])) {
-	            winner = boardMap[_i];
-	        }
-	    }
-
-	    //Check diagonal matches
-	    if (areThreeValuesEqual([boardMap[0], boardMap[4], boardMap[8]]) || areThreeValuesEqual([boardMap[2], boardMap[4], boardMap[6]])) {
-	        winner = boardMap[4];
-	    }
-
-	    return winner;
-	};
 
 	var isBoardFull = function isBoardFull(boardMap) {
 	    return boardMap.indexOf(null) === -1;
@@ -23950,7 +23931,7 @@
 
 	var defineText = function defineText(boardMap) {
 	    var text = '',
-	        winner = selectWinner(boardMap);
+	        winner = (0, _core.selectWinner)(boardMap);
 
 	    if (winner) {
 	        text = winner + ' won. Do you wanna more?';
@@ -23961,10 +23942,10 @@
 	    return text;
 	};
 
-	var mapStateToProps = function mapStateToProps(state) {
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	    return {
 	        text: defineText(state.boardMap),
-	        winner: selectWinner(state.boardMap)
+	        winner: (0, _core.selectWinner)(state.boardMap)
 	    };
 	};
 
@@ -23992,7 +23973,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Cell = function Cell(_ref) {
+	var Popup = function Popup(_ref) {
 	    var winner = _ref.winner,
 	        onButtonClick = _ref.onButtonClick,
 	        text = _ref.text;
@@ -24016,10 +23997,47 @@
 	    );
 	};
 
-	exports.default = Cell;
+	exports.default = Popup;
 
 /***/ },
 /* 223 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var areThreeValuesEqual = function areThreeValuesEqual(arr) {
+	    return arr[0] && arr[0] === arr[1] && arr[1] === arr[2];
+	};
+
+	var selectWinner = exports.selectWinner = function selectWinner(boardMap) {
+	    var winner = void 0;
+	    //Check horisontal matches
+	    for (var i = 0; i <= boardMap.length; i += 3) {
+	        if (areThreeValuesEqual([boardMap[i], boardMap[i + 1], boardMap[i + 2]])) {
+	            winner = boardMap[i];
+	        }
+	    }
+
+	    //Check vertical matches
+	    for (var _i = 0; _i < 3; _i++) {
+	        if (areThreeValuesEqual([boardMap[_i], boardMap[_i + 3], boardMap[_i + 6]])) {
+	            winner = boardMap[_i];
+	        }
+	    }
+
+	    //Check diagonal matches
+	    if (areThreeValuesEqual([boardMap[0], boardMap[4], boardMap[8]]) || areThreeValuesEqual([boardMap[2], boardMap[4], boardMap[6]])) {
+	        winner = boardMap[4];
+	    }
+	    console.log('selectWinner is called');
+	    return winner;
+	};
+
+/***/ },
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24030,18 +24048,22 @@
 
 	var _redux = __webpack_require__(191);
 
-	var _boardMap = __webpack_require__(224);
+	var _boardMap = __webpack_require__(225);
 
 	var _boardMap2 = _interopRequireDefault(_boardMap);
 
+	var _scoreBoard = __webpack_require__(226);
+
+	var _scoreBoard2 = _interopRequireDefault(_scoreBoard);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var gameReducer = (0, _redux.combineReducers)({ boardMap: _boardMap2.default });
+	var gameReducer = (0, _redux.combineReducers)({ boardMap: _boardMap2.default, scoreBoard: _scoreBoard2.default });
 
 	exports.default = gameReducer;
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24080,16 +24102,37 @@
 	exports.default = boardMap;
 
 /***/ },
-/* 225 */
+/* 226 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var scoreBoard = function scoreBoard() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { x: 0, o: 0 };
+	  var action = arguments[1];
+
+	  console.log(action);
+	  if (action.type === 'PLAYER_WON') {}
+
+	  return state;
+	};
+
+	exports.default = scoreBoard;
+
+/***/ },
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(226);
+	var content = __webpack_require__(228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(228)(content, {});
+	var update = __webpack_require__(230)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -24106,10 +24149,10 @@
 	}
 
 /***/ },
-/* 226 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(227)();
+	exports = module.exports = __webpack_require__(229)();
 	// imports
 
 
@@ -24120,7 +24163,7 @@
 
 
 /***/ },
-/* 227 */
+/* 229 */
 /***/ function(module, exports) {
 
 	/*
@@ -24176,7 +24219,7 @@
 
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
