@@ -1,12 +1,14 @@
 import React from 'react';
-import BoardContainer from '../containers/boardContainer';
-import PopupContainer from '../containers/popupContainer';
+import BoardContainer from '../containers/boardContainer'
+import PopupContainer from '../containers/popupContainer'
+import ScoreBoardContainer from '../containers/scoreBoardContainer'
 
 const Game = () => (
     <div>
-        <BoardContainer />
-        <PopupContainer />
+      <ScoreBoardContainer />
+      <BoardContainer />
+      <PopupContainer />
     </div>
 )
 
-export default Game;
+export default Game

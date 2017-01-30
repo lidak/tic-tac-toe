@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import boardMap from './boardMap';
-import scoreBoard from './scoreBoard'
+import game from './game'
 
-const gameReducer = combineReducers({boardMap, scoreBoard})
+const gameReducer = combineReducers({game})
 
 export default gameReducer;

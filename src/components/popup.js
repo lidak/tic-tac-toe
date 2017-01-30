@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 let Popup = ({winner, onButtonClick, text}) => (
     <div className={text ? 'popup-container' : 'popup-container hidden'}>
@@ -9,4 +9,4 @@ let Popup = ({winner, onButtonClick, text}) => (
     </div>
 )
 
-export default Popup;
+export default Popup

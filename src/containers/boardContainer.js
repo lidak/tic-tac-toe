@@ -1,19 +1,18 @@
-import { connect } from 'react-redux';
-import { makeMove } from '../actions';
-import Board from '../components/board';
+import { connect } from 'react-redux'
+import { makeMove } from '../actions'
+import Board from '../components/board'
 
 const mapStateToProps = (state) => ({
-    boardMap: state.boardMap,
-    activePlayer: state.activePlayer
-});
+    boardMap: state.game.boardMap
+})
 
 const mapDispatchToProps = ({
     onCellClick: makeMove
-});
+})
 
 const BoardContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Board);
+)(Board)
 
-export default BoardContainer;
+export default BoardContainer
