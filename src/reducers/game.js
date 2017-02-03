@@ -35,7 +35,10 @@ const game = (state = {
         let winner;
 
         if (state.boardMap[action.position]) {
-            return newMap;
+            return {
+              boardMap: newMap,
+              score: newScore
+            }
         }
 
         newMap[action.position] = player;

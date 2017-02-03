@@ -9,6 +9,7 @@ body {
     margin: 50px auto;
     position: relative;
 }
+
 .board .board-cell{
     border: 1px solid #000;
     cursor: pointer;
@@ -21,45 +22,4 @@ body {
     line-height: 140px;
     font-size: 80px;
     background: antiquewhite;
-}
-
-.popup-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: rgba(22,22,22,0.5);
-    top: 0;
-    left: 0;
-}
-
-.popup-container.hidden {
-    display: none;
-}
-
-.popup {
-    background: burlywood;
-    width: 50%;
-    top: 20%;
-    margin: auto;
-    height: 100px;
-    border-radius: 10px;
-    padding: 10;
-    text-align: center;
-    margin: 0 auto;
-    width: 300px;
-    position: relative;
-    z-index: 41;
-    top: 25%;
-    padding:30px;
-}
-
-.popup .text {
-    margin: 20px auto;
-}
-
-.popup button {
-    padding: 5px 25px;
-    border-radius: 5px;
-    outline: none;
-    background-color: antiquewhite
 }

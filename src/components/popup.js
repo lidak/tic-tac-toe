@@ -1,12 +1,14 @@
 import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import Dialog from 'material-ui/Dialog'
 
 let Popup = ({winner, onButtonClick, text}) => (
-    <div className={text ? 'popup-container' : 'popup-container hidden'}>
-        <div className='popup'>
-            <div className="text">{text}</div>
-            <button onClick={onButtonClick}>Play Again</button>
-        </div>
-    </div>
+  <Dialog
+    open={!!text}
+    title="The end.">
+      <div className="text">{text}</div>
+      <RaisedButton onClick={onButtonClick} label="Play Again" />
+  </Dialog>
 )
 
 export default Popup
